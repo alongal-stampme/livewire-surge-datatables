@@ -2,7 +2,8 @@
     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
 
     <div class="py-4">
-        <x-table>
+        <div class="flex-col space-y-4">
+            <x-table>
             <x-slot name="head">
                 <x-table.heading sortable>Title</x-table.heading>
                 <x-table.heading sortable>Amount</x-table.heading>
@@ -40,5 +41,10 @@
                 @endforeach
             </x-slot>
         </x-table>
+
+            <div>
+                {{ $transactions->links() }}
+            </div>
+        </div>
     </div>
 </div>
