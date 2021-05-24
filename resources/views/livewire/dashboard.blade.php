@@ -1,7 +1,14 @@
 <div>
     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
 
-    <div class="py-4">
+    <div class="py-4 space-y-4">
+        <div>
+            <div class="w-1/4">
+                <x-input.text wire:model="search"
+                              placeholder="Search Transactions"/>
+            </div>
+        </div>
+
         <div class="flex-col space-y-4">
             <x-table>
             <x-slot name="head">
@@ -12,8 +19,8 @@
             </x-slot>
 
             <x-slot name="body">
-                @foreach ($transactions as $transaction)
-                <x-table.row>
+                @forelse ($transactions as $transaction)
+                <x-table.row wire:loading.class.delay="opacity-25">
                     <x-table.cell>
                         <span href="#" class="inline-flex space-x-2 truncate text-sm leading-5">
                             <x-icon.cash class="text-cool-gray-400"/>
@@ -38,7 +45,16 @@
                         {{ $transaction->date_for_humans }}
                     </x-table.cell>
                 </x-table.row>
-                @endforeach
+                @empty
+                    <x-table.row wire:loading.class.delay="opacity-25">
+                        <x-table.cell colspan="4">
+                            <div class="flex justify-center items-center space-x-2">
+                                <x-icon.inbox class="h-8 w-8 text-cool-gray-400"/>
+                                <span class="py-8 font-medium text-cool-gray-400 text-xl">No transactions found...</span>
+                            </div>
+                        </x-table.cell>
+                    </x-table.row>
+                @endforelse
             </x-slot>
         </x-table>
 

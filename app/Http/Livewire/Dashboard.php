@@ -10,10 +10,12 @@ class Dashboard extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function render()
     {
         return view('livewire.dashboard', [
-            'transactions' => Transaction::paginate(10),
+            'transactions' => Transaction::search('title', $this->search)->paginate(10),
         ]);
     }
 }
