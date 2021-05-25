@@ -12,10 +12,10 @@
         <div class="flex-col space-y-4">
             <x-table>
             <x-slot name="head">
-                <x-table.heading sortable>Title</x-table.heading>
-                <x-table.heading sortable>Amount</x-table.heading>
-                <x-table.heading sortable>Status</x-table.heading>
-                <x-table.heading sortable>Date</x-table.heading>
+                <x-table.heading sortable wire:click="sortBy('title')" :direction="$sortField === 'title' ? $sortDirection : null">Title</x-table.heading>
+                <x-table.heading sortable wire:click="sortBy('amount')" :direction="$sortField === 'amount' ? $sortDirection : null">Amount</x-table.heading>
+                <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading>
+                <x-table.heading sortable wire:click="sortBy('date')" :direction="$sortField === 'date' ? $sortDirection : null">Date</x-table.heading>
             </x-slot>
 
             <x-slot name="body">
