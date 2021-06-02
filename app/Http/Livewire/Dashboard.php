@@ -13,6 +13,7 @@ class Dashboard extends Component
     public $search = '';
     public $sortField = 'title';
     public $sortDirection = 'asc';
+    public $showEditModal = false;
 
     protected $queryString = ['sortField', 'sortDirection'];
 
@@ -25,6 +26,11 @@ class Dashboard extends Component
         }
 
         $this->sortField = $field;
+    }
+
+    public function edit()
+    {
+        $this->showEditModal = true;
     }
 
     public function render()

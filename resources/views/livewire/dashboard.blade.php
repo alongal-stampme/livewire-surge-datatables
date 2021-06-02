@@ -16,6 +16,7 @@
                 <x-table.heading sortable wire:click="sortBy('amount')" :direction="$sortField === 'amount' ? $sortDirection : null">Amount</x-table.heading>
                 <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading>
                 <x-table.heading sortable wire:click="sortBy('date')" :direction="$sortField === 'date' ? $sortDirection : null">Date</x-table.heading>
+                <x-table.heading />
             </x-slot>
 
             <x-slot name="body">
@@ -44,6 +45,10 @@
                     <x-table.cell>
                         {{ $transaction->date_for_humans }}
                     </x-table.cell>
+
+                    <x-table.cell>
+                        <x-button.link wire:click="edit">Edit</x-button.link>
+                    </x-table.cell>
                 </x-table.row>
                 @empty
                     <x-table.row wire:loading.class.delay="opacity-25">
@@ -63,4 +68,14 @@
             </div>
         </div>
     </div>
+
+    <x-modal.dialog wire:model.defer="showEditModal">
+        <x-slot name="title">Edit Transaction</x-slot>
+        <x-slot name="content"></x-slot>
+
+        <x-slot name="footer">
+            <x-button.secondary>Cancel</x-button.secondary>
+            <x-button.primary>Save</x-button.primary>
+        </x-slot>
+    </x-modal.dialog>
 </div>
