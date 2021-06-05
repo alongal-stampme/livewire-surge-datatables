@@ -1,3 +1,5 @@
+// 13.53 in the video
+
 <div>
     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
 
@@ -47,7 +49,7 @@
                     </x-table.cell>
 
                     <x-table.cell>
-                        <x-button.link wire:click="edit">Edit</x-button.link>
+                        <x-button.link wire:click="edit({{ $transaction->id }})">Edit</x-button.link>
                     </x-table.cell>
                 </x-table.row>
                 @empty
@@ -69,13 +71,20 @@
         </div>
     </div>
 
-    <x-modal.dialog wire:model.defer="showEditModal">
+    <form wire:submit.prevent="save">
+        <x-modal.dialog wire:model.defer="showEditModal">
         <x-slot name="title">Edit Transaction</x-slot>
-        <x-slot name="content"></x-slot>
+
+        <x-slot name="content">
+            <x-input.group for="title" label="Title" :error="$errors->first('editing.title')">
+                <x-input.text wire:model="editing.title" id="title" />
+            </x-input.group>
+        </x-slot>
 
         <x-slot name="footer">
             <x-button.secondary>Cancel</x-button.secondary>
-            <x-button.primary>Save</x-button.primary>
+            <x-button.primary type="submit">Save</x-button.primary>
         </x-slot>
     </x-modal.dialog>
+    </form>
 </div>
