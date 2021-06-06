@@ -1,4 +1,3 @@
-// 20:35 in the video
 <div>
     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
 
@@ -91,13 +90,13 @@
                 </x-input.select>
             </x-input.group>
 
-            <x-input.group for="date" label="Date" :error="$errors->first('editing.date')">
-                <x-input.text wire:model="editing.date" id="date" />
+            <x-input.group for="date_for_editing" label="Date" :error="$errors->first('editing.date_for_editing')">
+                <x-input.date wire:model="editing.date_for_editing" id="date_for_editing" />
             </x-input.group>
         </x-slot>
 
         <x-slot name="footer">
-            <x-button.secondary>Cancel</x-button.secondary>
+            <x-button.secondary wire:click="$set('showEditModal', false)">Cancel</x-button.secondary>
             <x-button.primary type="submit">Save</x-button.primary>
         </x-slot>
     </x-modal.dialog>

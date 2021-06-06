@@ -18,13 +18,18 @@ class Dashboard extends Component
 
     protected $queryString = ['sortField', 'sortDirection'];
 
+    public function mount()
+    {
+        $this->editing = Transaction::make(['date' => now()]);
+    }
+
     public function rules()
     {
         return [
             'editing.title' => 'required',
             'editing.amount' => 'required',
             'editing.status' => 'required|in:' . collect(Transaction::STATUSES)->keys()->implode(','),
-            'editing.date' => 'required',
+            'editing.date_for_editing' => 'required',
         ];
     }
 
