@@ -1,5 +1,4 @@
-// 13.53 in the video
-
+// 20:35 in the video
 <div>
     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
 
@@ -78,6 +77,22 @@
         <x-slot name="content">
             <x-input.group for="title" label="Title" :error="$errors->first('editing.title')">
                 <x-input.text wire:model="editing.title" id="title" />
+            </x-input.group>
+
+            <x-input.group for="amount" label="Amount" :error="$errors->first('editing.amount')">
+                <x-input.money wire:model="editing.amount" id="amount" />
+            </x-input.group>
+
+            <x-input.group for="status" label="Status" :error="$errors->first('editing.status')">
+                <x-input.select wire:model="editing.status" id="status">
+                    @foreach(\App\Models\Transaction::STATUSES as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </x-input.select>
+            </x-input.group>
+
+            <x-input.group for="date" label="Date" :error="$errors->first('editing.date')">
+                <x-input.text wire:model="editing.date" id="date" />
             </x-input.group>
         </x-slot>
 

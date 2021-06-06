@@ -18,9 +18,15 @@ class Dashboard extends Component
 
     protected $queryString = ['sortField', 'sortDirection'];
 
-    protected $rules = [
-        'editing.title' => ['required'],
-    ];
+    public function rules()
+    {
+        return [
+            'editing.title' => 'required',
+            'editing.amount' => 'required',
+            'editing.status' => 'required|in:' . collect(Transaction::STATUSES)->keys()->implode(','),
+            'editing.date' => 'required',
+        ];
+    }
 
     public function sortBy($field)
     {

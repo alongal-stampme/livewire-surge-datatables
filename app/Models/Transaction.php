@@ -9,6 +9,12 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    const STATUSES = [
+        'success' => 'Success',
+        'failed' => 'Failed',
+        'processing' => 'Processing'
+    ];
+
     protected $casts = ['date' => 'date'];
 
     public function getStatusColorAttribute()
